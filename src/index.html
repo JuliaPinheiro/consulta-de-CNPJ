@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de CNPJ</title>
+  <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Consulta de CNPJ</h1>
+    <form id="cnpj-form">
+      <input type="text" id="cnpj-input" placeholder="Digite o CNPJ">
+      <button type="submit">Consultar</button>
+    </form>
+    <div id="company-info" class="hidden">
+      <h2>Informações da Empresa</h2>
+      <div id="info-fields"></div>
+      <h3>Sócios</h3>
+      <div id="partners"></div>
+      <button id="edit-button">Editar</button>
+      <button id="save-button" class="hidden">Salvar</button>
+    </div>
+    <div id="error-message" class="hidden">
+      <p>Ocorreu um erro ao buscar o CNPJ. Por favor, verifique o CNPJ e tente novamente.</p>
+    </div>
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
