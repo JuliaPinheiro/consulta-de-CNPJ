@@ -6,9 +6,12 @@ document
   .getElementById('cnpj-form')
   .addEventListener('submit', async function (event) {
     event.preventDefault();
-    const cnpj = document.getElementById('cnpj-input').value.trim();
+    let cnpj = document.getElementById('cnpj-input').value.trim();
     const errorMessage = document.getElementById('error-message');
     const companyInfo = document.getElementById('company-info');
+
+    cnpj = cleanCNPJ(cnpj);
+
     if (cnpj) {
       try {
         const data = await fetchCompanyData(cnpj);
@@ -29,6 +32,10 @@ document
       }
     }
   });
+
+function cleanCNPJ(cnpj) {
+  return cnpj.replace(/[^\d]/g, '');
+}
 
 function enableEditing() {
   const inputs = document.querySelectorAll(
