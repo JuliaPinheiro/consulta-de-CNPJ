@@ -4,27 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consulta de CNPJ</title>
+ 
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Consulta de CNPJ</h1>
-    <form id="cnpj-form">
-      <input type="text" id="cnpj-input" placeholder="Digite o CNPJ">
-      <button type="submit">Consultar</button>
+  <div class="container mt-5">
+    <h1 class="text-center">Consulta de CNPJ</h1>
+    <form id="cnpj-form" class="form-inline justify-content-center mb-5">
+      <input type="text" id="cnpj-input" class="form-control mr-2" placeholder="Digite o CNPJ">
+      <button type="submit" class="btn btn-primary">Consultar</button>
     </form>
-    <div id="company-info" class="hidden">
+    <div id="company-info" class="d-none">
       <h2>Informações da Empresa</h2>
-      <div id="info-fields"></div>
+      <div id="info-fields" class="form-row"></div>
       <h3>Sócios</h3>
-      <div id="partners"></div>
-      <button id="edit-button">Editar</button>
-      <button id="save-button" class="hidden">Salvar</button>
+      <div id="partners" class="row"></div>
+      <button id="edit-button" class="btn btn-warning mt-3">Editar</button>
+      <button id="save-button" class="btn btn-success mt-3 d-none">Salvar</button>
     </div>
-    <div id="error-message" class="hidden">
+    <div id="error-message" class="alert alert-danger d-none mt-3">
       <p>Ocorreu um erro ao buscar o CNPJ. Por favor, verifique o CNPJ e tente novamente.</p>
     </div>
   </div>
+ 
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script type="module" src="./main.js"></script>
 </body>
 </html>

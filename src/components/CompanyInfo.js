@@ -1,37 +1,37 @@
 export function CompanyInfo(data) {
   const infoFields = document.getElementById('info-fields');
   infoFields.innerHTML = `
-    <div>
+    <div class="col-md-6 mb-3">
       <label>Nome:</label>
-      <input type="text" value="${data.nome}" disabled>
+      <input type="text" class="form-control" value="${data.nome}" disabled>
     </div>
-    <div>
+    <div class="col-md-6 mb-3">
       <label>Razão Social:</label>
-      <input type="text" value="${data.razao_social}" disabled>
+      <input type="text" class="form-control" value="${data.razao_social}" disabled>
     </div>
-    <div>
+    <div class="col-md-6 mb-3">
       <label>Data de Abertura:</label>
-      <input type="text" value="${data.data_inicio_atividade}" disabled>
+      <input type="text" class="form-control" value="${data.data_inicio_atividade}" disabled>
     </div>
-    <div>
+    <div class="col-md-6 mb-3">
       <label>Situação:</label>
-      <input type="text" value="${data.situacao}" disabled>
+      <input type="text" class="form-control" value="${data.situacao}" disabled>
     </div>
-    <div>
+    <div class="col-md-6 mb-3">
       <label>Atividade Principal:</label>
-      <input type="text" value="${data.cnae_fiscal_descricao}" disabled>
+      <input type="text" class="form-control" value="${data.cnae_fiscal_descricao}" disabled>
     </div>
-    <div>
+    <div class="col-md-6 mb-3">
       <label>Endereço Completo:</label>
-      <input type="text" value="${data.logradouro}, ${data.numero} - ${data.bairro}, ${data.municipio} - ${data.uf}, ${data.cep}" disabled>
+      <input type="text" class="form-control" value="${data.logradouro}, ${data.numero} - ${data.bairro}, ${data.municipio} - ${data.uf}, ${data.cep}" disabled>
     </div>
-    <div>
+    <div class="col-md-6 mb-3">
       <label>Telefone:</label>
-      <input type="text" value="${data.ddd_telefone_1}" disabled>
+      <input type="text" class="form-control" value="${data.ddd_telefone_1}" disabled>
     </div>
-    <div>
+    <div class="col-md-6 mb-3">
       <label>E-mail:</label>
-      <input type="text" value="${data.email}" disabled>
+      <input type="text" class="form-control" value="${data.email}" disabled>
     </div>
   `;
 }
