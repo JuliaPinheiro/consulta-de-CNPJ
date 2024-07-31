@@ -1,14 +1,14 @@
 export async function fetchCompanyData(cnpj) {
-  const url = `https://brasilapi.com.br/api/cnpj/v1/${cnpj}`;
   try {
-    const response = await fetch(url);
+    const response = await fetch(
+      `https://brasilapi.com.br/api/cnpj/v1/${cnpj}`
+    );
     if (!response.ok) {
-      throw new Error(`Erro na API: ${response.statusText}`);
+      throw new Error('Erro na API');
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Erro ao buscar CNPJ:', error);
-    throw error;
+    throw new Error(`Erro ao buscar CNPJ: ${error.message}`);
   }
 }

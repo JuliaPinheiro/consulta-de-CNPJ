@@ -1,4 +1,4 @@
-export function PartnerCard(partners) {
+export function PartnerCard(partners, isEditable = false) {
   const partnersDiv = document.getElementById('partners');
   partnersDiv.innerHTML = '';
   partners.forEach((partner) => {
@@ -8,9 +8,13 @@ export function PartnerCard(partners) {
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Nome do Sócio</h5>
-          <input type="text" class="form-control mb-2" value="${partner.nome}" disabled>
+          <input type="text" class="form-control mb-2" value="${
+            partner.nome
+          }" ${isEditable ? '' : 'disabled'}>
           <h6 class="card-subtitle mb-2 text-muted">Qualificação</h6>
-          <input type="text" class="form-control" value="${partner.qualificacao}" disabled>
+          <input type="text" class="form-control" value="${
+            partner.qualificacao
+          }" ${isEditable ? '' : 'disabled'}>
         </div>
       </div>
     `;

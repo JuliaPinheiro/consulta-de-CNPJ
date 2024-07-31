@@ -4,16 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consulta de CNPJ</title>
- 
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
   <div class="container mt-5">
     <h1 class="text-center">Consulta de CNPJ</h1>
     <form id="cnpj-form" class="form-inline justify-content-center mb-5">
-      <input type="text" id="cnpj-input" class="form-control mr-2" placeholder="Digite o CNPJ">
-      <button type="submit" class="btn btn-primary">Consultar</button>
+      <div class="form-row align-items-center">
+        <div class="col-auto">
+          <input type="text" id="cnpj-input" class="form-control mb-2" placeholder="Digite o CNPJ">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-2">Consultar</button>
+        </div>
+      </div>
     </form>
     <div id="company-info" class="d-none">
       <h2>Informações da Empresa</h2>
@@ -27,7 +33,7 @@
       <p>Ocorreu um erro ao buscar o CNPJ. Por favor, verifique o CNPJ e tente novamente.</p>
     </div>
   </div>
- 
+  <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

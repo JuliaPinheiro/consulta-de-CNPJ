@@ -1,56 +1,49 @@
 import { fetchCompanyData } from './api/brasilapi.js';
 import { CompanyInfo } from './components/CompanyInfo.js';
 import { PartnerCard } from './components/PartnerCard.js';
+import { formatCNPJ } from './utils/formatters.js';
+
+let currentData = null;
 
 document
   .getElementById('cnpj-form')
-  .addEventListener('submit', async function (event) {
+  .addEventListener('submit', async (event) => {
     event.preventDefault();
-    let cnpj = document.getElementById('cnpj-input').value.trim();
-    const errorMessage = document.getElementById('error-message');
-    const companyInfo = document.getElementById('company-info');
+    const cnpjInput = document.getElementById('cnpj-input').value;
+    const formattedCnpj = formatCNPJ(cnpjInput);
 
-    cnpj = cleanCNPJ(cnpj);
+    document.getElementById('info-fields').innerHTML = '';
+    document.getElementById('partners').innerHTML = '';
+    document.getElementById('company-info').classList.add('d-none');
+    document.getElementById('error-message').classList.add('d-none');
 
-    if (cnpj) {
-      try {
-        const data = await fetchCompanyData(cnpj);
-        CompanyInfo(data);
-        PartnerCard(data.qsa);
-        companyInfo.classList.remove('hidden');
-        errorMessage.classList.add('hidden');
-        document
-          .getElementById('edit-button')
-          .addEventListener('click', enableEditing);
-        document
-          .getElementById('save-button')
-          .addEventListener('click', saveChanges);
-      } catch (error) {
-        errorMessage.classList.remove('hidden');
-        companyInfo.classList.add('hidden');
-        console.error('Erro ao buscar CNPJ:', error);
-      }
+    try {
+      const companyData = await fetchCompanyData(formattedCnpj);
+      currentData = companyData;
+      document.getElementById('company-info').classList.remove('d-none');
+      CompanyInfo(companyData);
+      PartnerCard(companyData.qsa);
+      document.getElementById('error-message').classList.add('d-none');
+    } catch (error) {
+      console.error('Erro ao buscar os dados da empresa:', error);
+      document.getElementById('error-message').classList.remove('d-none');
     }
   });
 
-function cleanCNPJ(cnpj) {
-  return cnpj.replace(/[^\d]/g, '');
-}
+document.getElementById('edit-button').addEventListener('click', () => {
+  CompanyInfo(currentData, true);
+  PartnerCard(currentData.qsa, true);
+  document.getElementById('edit-button').classList.add('d-none');
+  document.getElementById('save-button').classList.remove('d-none');
+});
 
-function enableEditing() {
+document.getElementById('save-button').addEventListener('click', () => {
   const inputs = document.querySelectorAll(
     '#info-fields input, #partners input'
   );
-  inputs.forEach((input) => (input.disabled = false));
-  document.getElementById('edit-button').classList.add('hidden');
-  document.getElementById('save-button').classList.remove('hidden');
-}
-
-function saveChanges() {
-  const inputs = document.querySelectorAll(
-    '#info-fields input, #partners input'
-  );
-  inputs.forEach((input) => (input.disabled = true));
-  document.getElementById('edit-button').classList.remove('hidden');
-  document.getElementById('save-button').classList.add('hidden');
-}
+  inputs.forEach((input) => {
+    input.setAttribute('disabled', 'disabled');
+  });
+  document.getElementById('edit-button').classList.remove('d-none');
+  document.getElementById('save-button').classList.add('d-none');
+});
