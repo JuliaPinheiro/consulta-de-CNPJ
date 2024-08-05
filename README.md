@@ -34,4 +34,4 @@ Para rodar o projeto localmente, siga os passos abaixo:
 1. Abra o navegador e acesse `http://localhost:3000`.
 2. Insira um CNPJ válido no campo de entrada e clique em "Consultar".
 3. As informações da empresa serão exibidas, incluindo os sócios.
-4. Para editar as informações dos sócios, clique no botão "Editar". Faça as alterações necessárias e clique em "Salvar".
+4. Para editar as informações clique no botão "Editar". Faça as alterações necessárias e clique em "Salvar".
