@@ -18,10 +18,15 @@ export function CompanyInfo(data, isEditable) {
   const infoFields = document.getElementById('info-fields');
   infoFields.innerHTML = '';
 
+  // Format the date
+  const formattedDate = new Date(data_inicio_atividade).toLocaleDateString(
+    'pt-BR'
+  );
+
   const fields = [
     { label: 'Nome', value: nome },
     { label: 'Razão Social', value: razao_social },
-    { label: 'Data de Abertura', value: data_inicio_atividade },
+    { label: 'Data de Abertura', value: formattedDate },
     { label: 'Situação', value: situacao },
     { label: 'Atividade Principal', value: cnae_fiscal_descricao },
     {
