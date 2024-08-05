@@ -14,16 +14,16 @@ O site permite que os usuários:
 Para rodar o projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
-     ```bash
+```bash
 git clone https://github.com/seu-usuario/consulta-de-cnpj.git
 cd consulta-de-cnpj
 
 1. Instale as dependencias: 
-     ```bash
+```bash
 npm install
 
 1. Inicie o servidor de desenvolvimento
-     ```bash
+```bash
 npm start
 
 ## Uso
