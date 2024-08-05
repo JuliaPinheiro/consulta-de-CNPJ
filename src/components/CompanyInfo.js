@@ -18,7 +18,6 @@ export function CompanyInfo(data, isEditable) {
   const infoFields = document.getElementById('info-fields');
   infoFields.innerHTML = '';
 
-  // Format the date
   const formattedDate = new Date(data_inicio_atividade).toLocaleDateString(
     'pt-BR'
   );
