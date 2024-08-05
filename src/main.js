@@ -5,6 +5,23 @@ import { formatCNPJ } from './utils/formatters.js';
 
 let currentData = null;
 
+const clearFields = () => {
+  document.getElementById('info-fields').innerHTML = '';
+  document.getElementById('partners').innerHTML = '';
+  document.getElementById('company-info').classList.add('d-none');
+  document.getElementById('error-message').classList.add('d-none');
+};
+
+const toggleEditSaveButtons = (isEditing) => {
+  document.getElementById('edit-button').classList.toggle('d-none', isEditing);
+  document.getElementById('save-button').classList.toggle('d-none', !isEditing);
+};
+
+const handleError = (error) => {
+  console.error('Erro ao buscar os dados da empresa:', error);
+  document.getElementById('error-message').classList.remove('d-none');
+};
+
 document
   .getElementById('cnpj-form')
   .addEventListener('submit', async (event) => {
@@ -12,10 +29,7 @@ document
     const cnpjInput = document.getElementById('cnpj-input').value;
     const formattedCnpj = formatCNPJ(cnpjInput);
 
-    document.getElementById('info-fields').innerHTML = '';
-    document.getElementById('partners').innerHTML = '';
-    document.getElementById('company-info').classList.add('d-none');
-    document.getElementById('error-message').classList.add('d-none');
+    clearFields();
 
     try {
       const companyData = await fetchCompanyData(formattedCnpj);
@@ -23,18 +37,15 @@ document
       document.getElementById('company-info').classList.remove('d-none');
       CompanyInfo(companyData);
       PartnerCard(companyData.qsa);
-      document.getElementById('error-message').classList.add('d-none');
     } catch (error) {
-      console.error('Erro ao buscar os dados da empresa:', error);
-      document.getElementById('error-message').classList.remove('d-none');
+      handleError(error);
     }
   });
 
 document.getElementById('edit-button').addEventListener('click', () => {
   CompanyInfo(currentData, true);
   PartnerCard(currentData.qsa, true);
-  document.getElementById('edit-button').classList.add('d-none');
-  document.getElementById('save-button').classList.remove('d-none');
+  toggleEditSaveButtons(true);
 });
 
 document.getElementById('save-button').addEventListener('click', () => {
@@ -44,6 +55,5 @@ document.getElementById('save-button').addEventListener('click', () => {
   inputs.forEach((input) => {
     input.setAttribute('disabled', 'disabled');
   });
-  document.getElementById('edit-button').classList.remove('d-none');
-  document.getElementById('save-button').classList.add('d-none');
+  toggleEditSaveButtons(false);
 });
